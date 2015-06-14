@@ -92,4 +92,4 @@ The `play` event is emitted after a play has been made.
 
 ### undo
 
-The `play` event is emitted after the last play has been undone.
+The `undo` event is emitted after the last play has been undone.
