@@ -1,0 +1,29 @@
+{
+  "name": "scrabble-score-keeper",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tableflip/scrabble-score-keeper.git"
+  },
+  "keywords": [
+    "scrabble"
+  ],
+  "author": "Alan Shaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tableflip/scrabble-score-keeper/issues"
+  },
+  "homepage": "https://github.com/tableflip/scrabble-score-keeper#readme",
+  "devDependencies": {
+    "standard": "^4.2.1"
+  },
+  "dependencies": {
+    "scrabble-board": "0.0.1",
+    "scrabble-score": "^1.0.0"
+  }
+}
