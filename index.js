@@ -10,7 +10,7 @@ var Direction = {
 
 function Letter (char, x, y) {
   this.char = char
-  this.x= x
+  this.x = x
   this.y = y
 }
 
@@ -28,7 +28,7 @@ function Score (opts) {
   this._points = {
     board: opts.points.board || boardScores,
     letter: opts.points.letter || letterScores
-  } 
+  }
 
   // Create an empty played letters grid based on the board
   this._letters = this._points.board.slice().reduce(function (letters, row) {
@@ -48,13 +48,13 @@ Score.prototype.play = function (letters, player) {
   // Infer direction
   var dir = Direction.Horizontal
 
-  if (letters[1] && letters[0].x == letters[1].x) {
+  if (letters[1] && letters[0].x === letters[1].x) {
     dir = Direction.Vertical
   }
 
   var points = 0
 
-  if (dir == Direction.Horizontal) {
+  if (dir === Direction.Horizontal) {
     points = this._pointsHorizontal(letters)
   } else {
     points = this._pointsVertical(letters)
@@ -74,9 +74,9 @@ Score.prototype.play = function (letters, player) {
 Score.prototype.score = function (player) {
   var points = 0
 
-  for (var i = this._plays.length - 1; i >=0; i--) {
+  for (var i = this._plays.length - 1; i >= 0; i--) {
     if (player) {
-      if (player == this._plays.player) {
+      if (player === this._plays.player) {
         points += this._plays[i].points
       }
     } else {
@@ -125,7 +125,7 @@ Score.prototype._getWord = function (startX, startY, dir, letters) {
   var y = startLetter.y
   var letter = null
 
-  if (dir == Direction.Horizontal) {
+  if (dir === Direction.Horizontal) {
     // Move left until we find a square with no letter
     while (this._findLetter(x - 1, y, letters) || this._getLetter(x - 1, y)) {
       startLetter = this._letters[x - 1][y]
@@ -170,7 +170,7 @@ Score.prototype._getLetter = function (x, y) {
 // Find a letter with the given coords in the list of letters
 Score.prototype._findLetter = function (x, y, letters) {
   for (var i = 0; i < letters.length; i++) {
-    if (x == letters[i].x && y == letters[i].y) return letters[i]
+    if (x === letters[i].x && y === letters[i].y) return letters[i]
   }
 }
 

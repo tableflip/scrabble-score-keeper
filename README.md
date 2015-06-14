@@ -59,6 +59,8 @@ Place an array of letters on the board. Letters Look like this:
 
 `char` is the letter to play, `x` is the column, `y` is the row.
 
+It returns the total points for the letters played and will cause a `play` event to be emitted.
+
 ### `ScoreKeeper.score([player])`
 
 Get the total score, or the total score for a particular player if passed.
