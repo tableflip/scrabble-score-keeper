@@ -4,7 +4,7 @@
   "description": "Keep track of scrabble scores",
   "main": "index.js",
   "scripts": {
-    "test": "standard && tape test.js"
+    "test": "standard && istanbul cover tape test.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/tableflip/scrabble-score-keeper#readme",
   "devDependencies": {
+    "istanbul": "^0.3.15",
     "standard": "^4.2.1",
     "tape": "^4.0.0"
   },
