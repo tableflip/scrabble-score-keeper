@@ -74,7 +74,7 @@ var ScoreKeeper = require('scrabble-score-keeper')
 var keeper = new ScoreKeeper()
 
 keeper.on('play', function (play) {
-  conosle.log(play.player, 'played', play.letters, 'and scored', play.points, 'points')
+  console.log(play.player, 'played', play.letters, 'and scored', play.points, 'points')
 })
 ```
 
