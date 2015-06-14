@@ -31,14 +31,14 @@ function Score (opts) {
   }
 
   // Create an empty played letters grid based on the board
-  this._letters = this._points.board.slice().reduce(function (letters, row) {
+  this._letters = this._points.board.slice().reduce(function (row, letters) {
     row.push(letters.map(function () { return null }))
     return row
   }, [])
 
   this._plays = []
 }
-inherits(EventEmitter, Score)
+inherits(Score, EventEmitter)
 
 Score.prototype.play = function (letters, player) {
   if (!letters.length) throw new Error('You must play at least one letter')
@@ -120,7 +120,7 @@ Score.prototype._pointsVertical = function (letters) {
 // Get a word on the scrabble board comprised of existing board letters and new ones passed
 Score.prototype._getWord = function (startX, startY, dir, letters) {
   var word = []
-  var startLetter = this._findLetter(x, y, letters) || this._getLetter(x, y)
+  var startLetter = this._findLetter(startX, startY, letters) || this._getLetter(startX, startY)
   var x = startLetter.x
   var y = startLetter.y
   var letter = null
@@ -138,7 +138,7 @@ Score.prototype._getWord = function (startX, startY, dir, letters) {
     while (letter) {
       word.push(letter)
       x++
-      letter = this._findLetter(x, y) || this._getLetter(x, y)
+      letter = this._findLetter(x, y, letters) || this._getLetter(x, y)
     }
   } else {
     // Move up until we find a square with no letter
@@ -153,7 +153,7 @@ Score.prototype._getWord = function (startX, startY, dir, letters) {
     while (letter) {
       word.push(letter)
       y++
-      letter = this._findLetter(x, y) || this._getLetter(x, y)
+      letter = this._findLetter(x, y, letters) || this._getLetter(x, y)
     }
   }
 
