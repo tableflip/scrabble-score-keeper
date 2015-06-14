@@ -183,6 +183,12 @@ Score.prototype._validateLetters = function (letters) {
     if (letter.y < 0 || letter.y > this._letters[0].length) {
       throw new RangeError('Letter y coord is not on the board')
     }
+
+    var exists = this._letters[letter.x][letter.y]
+
+    if (exists) {
+      throw new Error('Letter space ' + letter.x + ',' + letter.y + ' is already taken')
+    }
   }.bind(this))
 }
 

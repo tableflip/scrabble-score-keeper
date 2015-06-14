@@ -155,3 +155,16 @@ test('Should store scores per player', function (t) {
 
   t.end()
 })
+
+test('Should not allow two letters to be placed in the same space', function (t) {
+  t.plan(1)
+
+  var keeper = new ScoreKeeper()
+
+  t.throws(function () {
+    keeper.play([{char: 'A', x: 0, y: 0}])
+    keeper.play([{char: 'A', x: 0, y: 0}])
+  })
+
+  t.end()
+})
