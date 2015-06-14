@@ -11,7 +11,7 @@ var points = score.play([
   {char: 'G', x: 2, y: 0}
 ], 'Player1')
 
-console.log('Points for word TABLEFLIP: ', points)
+console.log('Points for word BIG: ', points)
 ```
 
 ## Options
@@ -51,7 +51,7 @@ An object with letter => points mapping.
 
 ### `ScoreKeeper.play(letters[, player])`
 
-Place letters on the board. Letters Look like this:
+Place an array of letters on the board. Letters Look like this:
 
 ```js
 {char: 'A', x: 0, y, 0}
