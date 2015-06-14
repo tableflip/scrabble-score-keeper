@@ -61,6 +61,16 @@ Place an array of letters on the board. Letters Look like this:
 
 It returns the total points for the letters played and will cause a `play` event to be emitted.
 
+### `ScoreKeeper.undo()`
+
+Undo the last play, returning details of the play that was undone. Play details look like:
+
+```js
+{letters: [{char: 'A', x: 0, y: 0}, /* ... */], points: 13, player: 'team1'}
+```
+
+It causes a `undo` event to be emitted.
+
 ### `ScoreKeeper.score([player])`
 
 Get the total score, or the total score for a particular player if passed.
@@ -79,3 +89,7 @@ keeper.on('play', function (play) {
 ```
 
 The `play` event is emitted after a play has been made.
+
+### undo
+
+The `play` event is emitted after the last play has been undone.

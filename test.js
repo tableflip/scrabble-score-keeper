@@ -212,3 +212,31 @@ test('Should not count multipliers that are not on tiles we placed', function (t
 
   t.end()
 })
+
+test('Should be able to undo the last play', function (t) {
+  t.plan(3)
+
+  var keeper = new ScoreKeeper()
+
+  keeper.play([
+    {char: 'M', x: 0, y: 1}, // 3
+    {char: 'A', x: 0, y: 2}, // 1
+    {char: 'D', x: 0, y: 3} // 2 & double letter
+  ])
+
+  var play = keeper.undo()
+
+  t.equal(play.points, 8)
+  t.equal(play.letters.map(function (l) { return l.char }).join(''), 'MAD')
+
+  // Should be allowed to play new letters in the same places
+  t.doesNotThrow(function () {
+    keeper.play([
+      {char: 'D', x: 0, y: 1}, // 2
+      {char: 'A', x: 0, y: 2}, // 1
+      {char: 'D', x: 0, y: 3} // 2 & double letter
+    ])
+  })
+
+  t.end()
+})

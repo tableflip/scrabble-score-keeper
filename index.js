@@ -87,6 +87,21 @@ Score.prototype.score = function (player) {
   return points
 }
 
+// Undo the last play
+Score.prototype.undo = function () {
+  if (!this._plays.length) return
+
+  var play = this._plays.pop()
+
+  play.letters.forEach(function (letter) {
+    this._letters[letter.x][letter.y] = null
+  }.bind(this))
+
+  this.emit('undo', play)
+
+  return play
+}
+
 Score.prototype._pointsHorizontal = function (letters) {
   var mainWord = this._getWord(letters[0].x, letters[0].y, Direction.Horizontal, letters)
 
