@@ -3,9 +3,9 @@
 ```js
 var ScoreKeeper = require('scrabble-score-keeper')
 
-var score = new ScoreKeeper()
+var keeper = new ScoreKeeper()
 
-var points = score.play([
+var points = keeper.play([
   {char: 'B', x: 0, y: 0},
   {char: 'I', x: 1, y: 0},
   {char: 'G', x: 2, y: 0}
@@ -71,9 +71,9 @@ Get the total score, or the total score for a particular player if passed.
 
 ```js
 var ScoreKeeper = require('scrabble-score-keeper')
-var score = new ScoreKeeper()
+var keeper = new ScoreKeeper()
 
-score.on('play', function (play) {
+keeper.on('play', function (play) {
   conosle.log(play.player, 'played', play.letters, 'and scored', play.points, 'points')
 })
 ```

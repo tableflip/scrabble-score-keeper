@@ -92,13 +92,16 @@ Score.prototype._pointsHorizontal = function (letters) {
 
   var otherWords = letters.reduce(function (words, letter) {
     var word = this._getWord(letter.x, letter.y, Direction.Vertical, letters)
-    return word ? words.concat(word) : words
+    if (word) words.push(word)
+    return words
   }.bind(this), [])
 
   var allWords = (mainWord ? [mainWord].concat(otherWords) : otherWords)
 
+  // console.log(allWords)
+
   return allWords.reduce(function (points, word) {
-    return points + this._wordPoints(word)
+    return points + this._wordPoints(word, letters)
   }.bind(this), 0)
 }
 
@@ -107,13 +110,16 @@ Score.prototype._pointsVertical = function (letters) {
 
   var otherWords = letters.reduce(function (words, letter) {
     var word = this._getWord(letter.x, letter.y, Direction.Horizontal, letters)
-    return word ? words.concat(word) : words
+    if (word) words.push(word)
+    return words
   }.bind(this), [])
 
   var allWords = (mainWord ? [mainWord].concat(otherWords) : otherWords)
 
+  // console.log(allWords)
+
   return allWords.reduce(function (points, word) {
-    return points + this._wordPoints(word)
+    return points + this._wordPoints(word, letters)
   }.bind(this), 0)
 }
 
@@ -198,14 +204,20 @@ Score.prototype._placeLetters = function (letters) {
   }.bind(this))
 }
 
-Score.prototype._wordPoints = function (word) {
+Score.prototype._wordPoints = function (word, letters) {
   var points = 0
   var multipliers = []
 
   word.forEach(function (letter) {
     var boardPoints = this._points.board[letter.x][letter.y]
-    points += (this._points.letter[letter.char] * boardPoints.LS)
-    multipliers.push(boardPoints.WS)
+
+    // Only use multipliers if it is one of the letters we placed
+    if (this._findLetter(letter.x, letter.y, letters)) {
+      points += (this._points.letter[letter.char] * boardPoints.LS)
+      multipliers.push(boardPoints.WS)
+    } else {
+      points += this._points.letter[letter.char]
+    }
   }.bind(this))
 
   multipliers.forEach(function (multiplier) {

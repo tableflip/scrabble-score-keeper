@@ -24,7 +24,7 @@
     "tape": "^4.0.0"
   },
   "dependencies": {
-    "scrabble-board": "0.0.1",
+    "scrabble-board": "^0.2.0",
     "scrabble-score": "^1.0.0"
   }
 }

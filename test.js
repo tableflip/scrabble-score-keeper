@@ -149,9 +149,9 @@ test('Should store scores per player', function (t) {
     {char: 'P', x: 0, y: 2} // 3
   ], 'player2')
 
-  t.equal(keeper.score(), 39)
+  t.equal(keeper.score(), 25)
   t.equal(keeper.score('player1'), 18)
-  t.equal(keeper.score('player2'), 21)
+  t.equal(keeper.score('player2'), 7)
 
   t.end()
 })
@@ -165,6 +165,50 @@ test('Should not allow two letters to be placed in the same space', function (t)
     keeper.play([{char: 'A', x: 0, y: 0}])
     keeper.play([{char: 'A', x: 0, y: 0}])
   })
+
+  t.end()
+})
+
+test('Should count other words aside from main word', function (t) {
+  t.plan(1)
+
+  var keeper = new ScoreKeeper()
+
+  keeper.play([
+    {char: 'M', x: 0, y: 1}, // 3
+    {char: 'A', x: 0, y: 2}, // 1
+    {char: 'D', x: 0, y: 3} // 2 & double letter
+  ])
+
+  var points = keeper.play([
+    {char: 'S', x: 1, y: 2}, // 1
+    {char: 'O', x: 1, y: 3}, // 1
+    {char: 'N', x: 1, y: 4} // 1
+  ])
+
+  // SON, AS, DO
+  t.equal(points, 8)
+
+  t.end()
+})
+
+test('Should not count multipliers that are not on tiles we placed', function (t) {
+  t.plan(1)
+
+  var keeper = new ScoreKeeper()
+
+  keeper.play([
+    {char: 'M', x: 0, y: 1}, // 3
+    {char: 'A', x: 0, y: 2}, // 1
+    {char: 'D', x: 0, y: 3} // 2 & double letter
+  ])
+
+  var points = keeper.play([
+    {char: 'O', x: 1, y: 3}, // 1
+    {char: 'G', x: 2, y: 3} // 2
+  ])
+
+  t.equal(points, 5)
 
   t.end()
 })
