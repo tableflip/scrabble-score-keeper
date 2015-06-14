@@ -74,7 +74,7 @@ Score.prototype.play = function (letters, player) {
 Score.prototype.score = function (player) {
   var points = 0
 
-  for (var i = this._plays.length - 1; i >= 0; i--) {
+  for (var i = 0; i < this._plays.length; i++) {
     if (player) {
       if (player === this._plays[i].player) {
         points += this._plays[i].points
