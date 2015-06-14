@@ -76,7 +76,7 @@ Score.prototype.score = function (player) {
 
   for (var i = this._plays.length - 1; i >= 0; i--) {
     if (player) {
-      if (player === this._plays.player) {
+      if (player === this._plays[i].player) {
         points += this._plays[i].points
       }
     } else {
