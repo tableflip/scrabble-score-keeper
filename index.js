@@ -198,7 +198,6 @@ Score.prototype._wordPoints = function (word) {
 
   word.forEach(function (letter) {
     var boardPoints = this._points.board[letter.x][letter.y]
-
     points += (this._points.letter[letter.char] * boardPoints.LS)
     multipliers.push(boardPoints.WS)
   }.bind(this))
