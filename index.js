@@ -225,13 +225,14 @@ Score.prototype._wordPoints = function (word, letters) {
 
   word.forEach(function (letter) {
     var boardPoints = this._points.board[letter.x][letter.y]
+    var letterPoints = this._points.letter[letter.char] || 0
 
     // Only use multipliers if it is one of the letters we placed
     if (this._findLetter(letter.x, letter.y, letters)) {
-      points += (this._points.letter[letter.char] * boardPoints.LS)
+      points += (letterPoints * boardPoints.LS)
       multipliers.push(boardPoints.WS)
     } else {
-      points += this._points.letter[letter.char]
+      points += letterPoints
     }
   }.bind(this))
 
